@@ -18,7 +18,7 @@ const UserDetails = ({ id, setUserId }) => {
 
   if(isLoading) return <ImageSkeleton isCentered/>
   return (
-    <div className="flex flex-col max-w-xs mx-auto items-center border border-indigo-600 text-center rounded-md hover:bg-indigo-600 duration-300">
+    <div className="flex flex-col my-5 max-w-xs mx-auto items-center border border-indigo-600 text-center rounded-md hover:bg-indigo-600 duration-300">
       <div
         onClick={() => setUserId(-1)}
         className="text-3xl hover:cursor-pointer"
