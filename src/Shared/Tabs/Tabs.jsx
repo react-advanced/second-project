@@ -5,12 +5,11 @@ import { useState } from "react";
 const Tabs = () => {
   const [activeTab, setActiveTAb] = useState(TABS[0].name);
   const [tmepIdx, setTempIdx] = useState(0);
-
   return (
     <>
       <div className="flex items-center justify-center">
         {TABS.map((tab, idx) => (
-          <Tab key={tab.id} onClick={() => setTempIdx(idx)}>
+          <Tab key={tab.id} onClick={() =>{ setTempIdx(idx) , setActiveTAb(tab.name)}} isActive={activeTab == tab.name} >
             {tab.title}
           </Tab>
         ))}

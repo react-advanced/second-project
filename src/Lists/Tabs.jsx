@@ -1,10 +1,14 @@
+import Posts from "../Components/Posts/Posts";
+import Products from "../Components/Products/Products";
+import Users from "../Components/Users/Users";
+
 export const TABS = [
-  { id: 1, name: "users", title: "Users", tabPanel: <h2>User Panel</h2> },
-  { id: 2, name: "posts", title: "Posts", tabPanel: <h2>Posts Panel</h2> },
+  { id: 1, name: "users", title: "Users", tabPanel: <Users /> },
+  { id: 2, name: "posts", title: "Posts", tabPanel: <Posts /> },
   {
     id: 3,
     name: "products",
     title: "Products",
-    tabPanel: <h2>Products Panel</h2>,
+    tabPanel: <Products />,
   },
 ];

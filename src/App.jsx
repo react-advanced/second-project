@@ -3,7 +3,7 @@ import Tabs from "./Shared/Tabs/Tabs";
 
 const App = () => {
   return (
-    <div className="container pt-4">
+    <div className="container py-6">
       <div>
         <Tabs/>
       </div>
