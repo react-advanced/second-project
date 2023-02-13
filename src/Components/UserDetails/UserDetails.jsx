@@ -1,33 +1,40 @@
-import { useEffect, useState } from "react";
-import { axiosInstance } from './../../api/axios.config';
-import ImageSkeleton from './../../Shared/ImageSkeleton';
+import { axiosInstance } from "./../../api/axios.config";
+import ImageSkeleton from "./../../Shared/ImageSkeleton";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { useQuery } from "react-query";
 
 const UserDetails = ({ id, setUserId }) => {
-  const [user, setUser] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  // const [user, setUser] = useState({});
+  // const [isLoading, setIsLoading] = useState(true);
+  // useEffect(() => {
+  //   axiosInstance
+  //     .get(`/users/${id}`)
+  //     .then(({ data }) => setUser(data))
+  //     .catch((err) => console.log(err))
+  //     .finally(() => setIsLoading(false));
+  // }, []);
 
-  useEffect(() => {
-    axiosInstance
-      .get(`/users/${id}`)
-      .then(({ data }) => setUser(data))
-      .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
-  }, []);
+  // react query
+  //!SECTION - users
+  const getUser = async () => {
+    const { data } = await axiosInstance.get(`/users/${id}`);
+    return data;
+  };
+  const { data, isLoading } = useQuery(["user", id], () => getUser());
 
-  if(isLoading) return <ImageSkeleton isCentered/>
+  if (isLoading) return <ImageSkeleton isCentered />;
   return (
     <div className="flex flex-col my-5 max-w-xs mx-auto items-center border border-indigo-600 text-center rounded-md hover:bg-indigo-600 duration-300">
       <div
         onClick={() => setUserId(-1)}
-        className="text-3xl hover:cursor-pointer"
+        className="text-2xl hover:cursor-pointer shadow-sm bg-slate-100 mt-3 rounded-md"
       >
         ⬅️
       </div>
       <LazyLoadImage
-        src={user.image}
-        alt={user.firstName + " " + user.lastName}
+        src={data.image}
+        alt={data.firstName + " " + data.lastName}
         className="mx-auto"
         effect="blur"
       />
