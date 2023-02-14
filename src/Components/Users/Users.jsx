@@ -3,10 +3,10 @@ import { useQuery } from "react-query";
 import Checkbox from "../../Shared/Checkbox/Checkbox";
 import ImageSkeleton from "../../Shared/ImageSkeleton";
 import Select from "../../Shared/Select/Select";
-import User from "../User/User";
 import { axiosInstance } from "./../../api/axios.config";
-import UserDetails from "./../UserDetails/UserDetails";
 import Spinner from './../../Shared/Spinner/Spinner';
+import User from "./User";
+import UserDetails from './UserDetails';
 
 const Users = () => {
   const [userId, setUserId] = useState(-1);

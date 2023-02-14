@@ -2,7 +2,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { useQueryClient } from "react-query";
 import imagePlaceholder from "../../Assets/placeholder.jpeg";
-import CachedEmoji from './../CachedEmoji';
+import CachedEmoji from '../CachedEmoji';
 
 const User = ({
   id,

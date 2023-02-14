@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import Select from "../../Shared/Select/Select";
-import { axiosInstance } from "./../../api/axios.config";
 import Post from "./Post";
 import PostDetails from "./PostDetails";
 import TextSkeleton from "./../../Shared/TextSkeleton";
 import Spinner from "../../Shared/Spinner/Spinner";
 import Pagination from "../../Shared/Pagination/Pagination";
+import useFetcher from './../../hooks/useFetcher';
 
 const Posts = () => {
   const [postId, setPostId] = useState(-1);
@@ -19,16 +18,8 @@ const Posts = () => {
 
   // react query
   //!SECTION - posts
-  const getUserList = async () => {
-    const { data } = await axiosInstance.get(
-      `/posts?limit=${limit}&skip=${skipPosts}`
-    );
-    return data;
-  };
-  const { data, isLoading, isFetching } = useQuery(
-    ["posts", limit, currentPage],
-    () => getUserList()
-  );
+  const { data, isLoading ,isFetching } = useFetcher(["posts", limit, currentPage], `/posts?limit=${limit}&skip=${skipPosts}`);
+
 
   // ====== handelers =====
   const handelLimit = (e) => {

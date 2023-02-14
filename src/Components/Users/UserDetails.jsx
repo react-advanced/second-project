@@ -1,13 +1,13 @@
-import { axiosInstance } from "./../../api/axios.config";
-import ImageSkeleton from "./../../Shared/ImageSkeleton";
+import ImageSkeleton from "../../Shared/ImageSkeleton";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { useQuery, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 import CachedEmoji from "../CachedEmoji";
+import useFetcher from "../../hooks/useFetcher";
 
 const UserDetails = ({ id, setUserId }) => {
   const queryClient = useQueryClient();
-  const isCached = queryClient.getQueryData(["user" , id]);
+  const isCached = queryClient.getQueryData(["user", id]);
   // const [user, setUser] = useState({});
   // const [isLoading, setIsLoading] = useState(true);
   // useEffect(() => {
@@ -19,12 +19,8 @@ const UserDetails = ({ id, setUserId }) => {
   // }, []);
 
   // react query
-  //!SECTION - users
-  const getUser = async () => {
-    const { data } = await axiosInstance.get(`/users/${id}`);
-    return data;
-  };
-  const { data, isLoading } = useQuery(["user", id], () => getUser());
+
+  const { data, isLoading } = useFetcher(["user", id], `/users/${id}`);
 
   if (isLoading) return <ImageSkeleton isCentered />;
   return (
@@ -41,7 +37,7 @@ const UserDetails = ({ id, setUserId }) => {
         className="mx-auto"
         effect="blur"
       />
-      <CachedEmoji isCached={isCached}/>
+      <CachedEmoji isCached={isCached} />
     </div>
   );
 };
