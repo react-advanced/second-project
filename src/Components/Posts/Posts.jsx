@@ -13,6 +13,7 @@ const Posts = () => {
   const [limit, setLimit] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
   const [skipPosts, setSkipPosts] = useState(0);
+  const TOTAL = 150;
 
   // offset(skip) = (currentPage - 1) * limit;
 
@@ -35,7 +36,7 @@ const Posts = () => {
   };
 
   const onClickNextHandler = () => {
-    if(currentPage == Math.ceil(150 / limit)) return;
+    if(currentPage == Math.ceil(TOTAL / limit)) return;
     setCurrentPage((prev) => prev + 1);
   };
   const onClickPrevHandler = () => {
@@ -87,9 +88,9 @@ const Posts = () => {
           </div>
           <Pagination
             currentPage={currentPage}
-            lastPage={Math.ceil(150 / limit)}
-            total={150}
-            isNextBtnDisabled={currentPage == Math.ceil(150 / limit)}
+            lastPage={Math.ceil(TOTAL / limit)}
+            total={TOTAL}
+            isNextBtnDisabled={currentPage == Math.ceil(TOTAL / limit)}
             isPrevBtnDisabled={currentPage == 1}
             onClickNext={onClickNextHandler}
             onClickPrev={onClickPrevHandler}

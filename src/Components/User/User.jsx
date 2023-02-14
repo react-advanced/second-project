@@ -1,6 +1,8 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useQueryClient } from "react-query";
 import imagePlaceholder from "../../Assets/placeholder.jpeg";
+import CachedEmoji from './../CachedEmoji';
 
 const User = ({
   id,
@@ -12,9 +14,11 @@ const User = ({
   ip,
   password,
 }) => {
+  const queryClient = useQueryClient();
+  const isCached = queryClient.getQueryData(["user" , id]);
   return (
     <div
-      className="border border-indigo-600 pt-3 text-center rounded-md hover:bg-indigo-600 hover:-translate-y-2 duration-300 hover:cursor-pointer group"
+      className="border border-indigo-600 pt-3 text-center rounded-md py-3 hover:bg-indigo-600 hover:-translate-y-2 duration-300 hover:cursor-pointer group"
       onClick={() => setUserId(id)}
     >
       {domain ? (
@@ -48,6 +52,7 @@ const User = ({
         effect="blur"
         placeholderSrc={imagePlaceholder}
       />
+      <CachedEmoji isCached={isCached}/>
     </div>
   );
 };
