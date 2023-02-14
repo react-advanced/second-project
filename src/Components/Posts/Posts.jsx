@@ -35,9 +35,11 @@ const Posts = () => {
   };
 
   const onClickNextHandler = () => {
+    if(currentPage == Math.ceil(150 / limit)) return;
     setCurrentPage((prev) => prev + 1);
   };
   const onClickPrevHandler = () => {
+    if(currentPage <= 1) return;
     setCurrentPage((prev) => prev - 1);
   };
 
