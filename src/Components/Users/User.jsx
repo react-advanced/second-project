@@ -18,11 +18,11 @@ const User = ({
   const isCached = queryClient.getQueryData(["user" , id]);
   return (
     <div
-      className="border border-indigo-600 pt-3 text-center rounded-md py-3 hover:bg-indigo-600 hover:-translate-y-2 duration-300 hover:cursor-pointer group"
+      className="border border-indigo-600 pt-3 flex flex-col items-center text-center rounded-md py-3 dark:hover:bg-indigo-600 hover:bg-indigo-400 hover:-translate-y-2 duration-300 hover:cursor-pointer group"
       onClick={() => setUserId(id)}
     >
       {domain ? (
-        <h4 className="text-sm mb-1">
+        <h4 className="text-sm mb-1 dark:text-slate-200">
           <span className="block font-bold">Domain: </span>
           {domain}
         </h4>
@@ -30,7 +30,7 @@ const User = ({
         <></>
       )}
       {password ? (
-        <h4 className="text-sm mb-1">
+        <h4 className="text-sm mb-1 dark:text-slate-200">
           <span className="block font-bold">Password: </span>
           {password}
         </h4>
@@ -38,7 +38,7 @@ const User = ({
         <></>
       )}
       {ip ? (
-        <h4 className="text-sm mb-1">
+        <h4 className="text-sm mb-1 dark:text-slate-200">
           <span className="block font-bold">IP: </span>
           {ip}
         </h4>

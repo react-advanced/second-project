@@ -9,7 +9,13 @@ const Tabs = () => {
     <>
       <div className="flex items-center justify-center">
         {TABS.map((tab, idx) => (
-          <Tab key={tab.id} onClick={() =>{ setTempIdx(idx) , setActiveTAb(tab.name)}} isActive={activeTab == tab.name} >
+          <Tab
+            key={tab.id}
+            onClick={() => {
+              setTempIdx(idx), setActiveTAb(tab.name);
+            }}
+            isActive={activeTab == tab.name}
+          >
             {tab.title}
           </Tab>
         ))}

@@ -21,7 +21,6 @@ const UserDetails = ({ id, setUserId }) => {
   // react query
 
   const { data, isLoading } = useFetcher(["user", id], `/users/${id}`);
-
   if (isLoading) return <ImageSkeleton isCentered />;
   return (
     <div className="flex flex-col my-5 py-3 max-w-xs mx-auto items-center border border-indigo-600 text-center rounded-md hover:bg-indigo-600 duration-300">

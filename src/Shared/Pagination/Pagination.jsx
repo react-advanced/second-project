@@ -35,7 +35,7 @@ const Pagination = ({
           style={
             isPrevBtnDisabled ? { cursor: "not-allowed", opacity: 0.5 } : null
           }
-          onClick={() => onClickPrev()}
+          onClick={onClickPrev}
         >
           <svg
             aria-hidden="true"
@@ -58,7 +58,7 @@ const Pagination = ({
           style={
             isNextBtnDisabled ? { cursor: "not-allowed", opacity: 0.5 } : null
           }
-          onClick={() => onClickNext()}
+          onClick={onClickNext}
         >
           Next
           <svg

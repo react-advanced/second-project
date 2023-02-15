@@ -5,7 +5,7 @@ import PostDetails from "./PostDetails";
 import TextSkeleton from "./../../Shared/TextSkeleton";
 import Spinner from "../../Shared/Spinner/Spinner";
 import Pagination from "../../Shared/Pagination/Pagination";
-import useFetcher from './../../hooks/useFetcher';
+import useFetcher from "./../../hooks/useFetcher";
 
 const Posts = () => {
   const [postId, setPostId] = useState(-1);
@@ -18,8 +18,10 @@ const Posts = () => {
 
   // react query
   //!SECTION - posts
-  const { data, isLoading ,isFetching } = useFetcher(["posts", limit, currentPage], `/posts?limit=${limit}&skip=${skipPosts}`);
-
+  const { data, isLoading, isFetching } = useFetcher(
+    ["posts", limit, currentPage, skipPosts],
+    `/posts?limit=${limit}&skip=${skipPosts}`
+  );
 
   // ====== handelers =====
   const handelLimit = (e) => {
@@ -27,25 +29,22 @@ const Posts = () => {
   };
 
   const onClickNextHandler = () => {
-    if(currentPage == Math.ceil(TOTAL / limit)) return;
+    if (currentPage === Math.ceil(TOTAL / limit)) return;
     setCurrentPage((prev) => prev + 1);
   };
   const onClickPrevHandler = () => {
-    if(currentPage <= 1) return;
+    if (currentPage <= 1) return;
     setCurrentPage((prev) => prev - 1);
   };
 
-  // *FIXME - fix pagination problem in posts
   useEffect(() => {
-    if(currentPage == 1){
-      setSkipPosts(0)
-      // console.log(skipPosts , 'posts skipped')
+    if (currentPage == 1) {
+      setSkipPosts(0);
       return;
     }
 
     setSkipPosts((currentPage - 1) * limit);
-    // console.log('current page :' ,currentPage , '   from effect')
-  }, [currentPage , limit]);
+  }, [currentPage, limit]);
 
   if (isLoading)
     return (
